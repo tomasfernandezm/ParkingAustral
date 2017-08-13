@@ -1,0 +1,7 @@
+~~~~~ Pendientes ~~~~~
+
+1. Probar método de detección (sensor infrarrojo)
+2. Escribir código para el 7 segmentos
+3. Escribir código para el detector
+4. Hacer medición del estacionamiento y cálculo de la cantidad posible de lugares
+
