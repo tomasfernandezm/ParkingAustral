@@ -31,7 +31,7 @@ Proyecto para implementar un sistema de control de lugares en el estacionamiento
 
 - Hay que tener un delta t para verificar si es un auto el que está cruzando. Con este delta t en realidad vamos a estar verificando la longitud del auto dado por la fórmula v x d = t.
 
-- Para verificar si un auto está parado, hay que tener un tiempo máximo de medición.
+- Para verificar si un auto está parado, hay que tener un tiempo máximo de medición. Se puede reemplazar el tiempo maximo de medicion esperando a que el auto salga del sistema.
 
 - Para verificar si es un grupo de personas, poner el laser a nivel de las ruedas, para poder diferenciar entre la cantidad de patas y la cantidad de ruedas (que siempre van a hacer 2).
 
