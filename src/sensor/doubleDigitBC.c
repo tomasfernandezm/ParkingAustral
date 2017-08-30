@@ -6,7 +6,8 @@ int ones = 0;
 
 void setup(){
     for(int i = 0;i < bitAmount; i++){
-        pinMode(ledPins[i], OUTPUT);
+        pinMode(tensLedPins[i], OUTPUT);
+        pinMode(onesLedPins[i], OUTPUT);
     }
 }
 
@@ -19,9 +20,10 @@ void loop(){
     }else{
         ones++;
     }
+    delay(500);
 }
 
-void showBinaryNumber(int num, int[] ledPins) {
+void showBinaryNumber(int num, int ledPins[]) {
     for (int i=0; i < bitAmount; i++) {
       if (num%2)
         digitalWrite(ledPins[i], HIGH);
