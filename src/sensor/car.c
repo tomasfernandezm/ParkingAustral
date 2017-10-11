@@ -7,7 +7,7 @@
 
 // ~~~~~~~~~~~~~~~ Arduino pins declarations ~~~~~~~~~~~~~~~~~~~~~~~~
 const int entryPhotoResistorPin = A1;
-const int exitPhotoResistorPin = A1;
+const int exitPhotoResistorPin = A2;
 const int entryLaserPin = 7;
 const int exitLaserPint = 8;
 
@@ -28,6 +28,7 @@ double timeMin = 20;
 void setup(){
     pinMode(entryLaserPin, OUTPUT);
     pinMode(exitLaserPin, OUTPUT);
+    Serial.begin(9600);
 }
 
 void loop(){
@@ -59,6 +60,6 @@ void loop(){
         hasOperated = 0;
         isCar = 0;
     }
-    
+
     delay(500);
 }
