@@ -1,8 +1,11 @@
 // ~~~~~~~~~~~~~~~ Arduino pins declarations ~~~~~~~~~~~~~~~~~~~~~~~~
 const int entryPhotoResistorPin = A1;
 const int exitPhotoResistorPin = A2;
-const int entryLaserPin = 7;
-const int exitLaserPin = 8;
+const int entryLaserPin = 3;
+const int exitLaserPin = 4;
+
+const int entrySignal = 1;
+const int exitSignal = 2;
 
 // ~~~~~~~~~~~~~~~ System variable declarations ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -20,7 +23,10 @@ int carEntered = 0;
 void setup(){
   pinMode(entryLaserPin, OUTPUT);
   pinMode(exitLaserPin, OUTPUT);
-  digitalWrite(entryLaserPin, LOW);
+  pinMode(entrySignal, OUTPUT);
+  pinMode(exitSignal, OUTPUT);
+  digitalWrite(entrySignal, LOW);
+  digitalWrite(entryLaserPin, HIGH);
   digitalWrite(exitLaserPin, HIGH);
   Serial.begin(9600);
 }
@@ -54,6 +60,8 @@ void loop(){
       isEntering = 0;
       Serial.print("Un auto entró!!\n");
       Serial.print(availablePlaces);
+      digitalWrite(entrySignal, HIGH);
+      digitalWrite(entrySignal, LOW);
     }else{
       isEntering = 0;
     }

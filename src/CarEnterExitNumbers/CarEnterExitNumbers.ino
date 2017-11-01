@@ -4,7 +4,7 @@ const int exitPhotoResistorPin = A2;
 const int entryLaserPin = 3;
 const int exitLaserPin = 4;
 
-const int entrySignal = 1;
+const int entrySignal = 5;
 const int exitSignal = 2;
 
 // ~~~~~~~~~~~~~~~ System variable declarations ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,10 +33,11 @@ void setup(){
   pinMode(exitLaserPin, OUTPUT);
   pinMode(entrySignal, OUTPUT);
   pinMode(exitSignal, OUTPUT);
-  digitalWrite(entrySignal, LOW);
-  digitalWrite(exitSignal, LOW);
+
   digitalWrite(entryLaserPin, HIGH);
   digitalWrite(exitLaserPin, HIGH);
+  digitalWrite(entrySignal, LOW);
+  digitalWrite(exitSignal, LOW);
 
   for(int i = 0;i < bitAmount; i++){
         pinMode(tensLedPins[i], OUTPUT);
@@ -75,8 +76,11 @@ void loop(){
       isEntering = 0;
       Serial.print("Un auto entro!!\n");
       Serial.print(availablePlaces);
+
       digitalWrite(entrySignal, HIGH);
+      delay(50);
       digitalWrite(entrySignal, LOW);
+      
 
       if(ones == 0){
           ones = 9;
@@ -102,8 +106,11 @@ void loop(){
       isExiting = 0;
       Serial.print("Un auto salio!!\n");
       Serial.print(availablePlaces);
+
       digitalWrite(exitSignal, HIGH);
+      delay(50);
       digitalWrite(exitSignal, LOW);
+      
 
       if(ones == 9){
           ones = 0;
