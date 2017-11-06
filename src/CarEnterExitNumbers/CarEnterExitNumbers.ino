@@ -20,6 +20,8 @@ int activatedFirstAndSecondSensor = 0;
 int activatedSecondSensor = 0;
 int carEntered = 0;
 
+int overflowCars = 0; 
+
 // ~~~~~~~~~~~~~~~ Counter pins & variable declarations ~~~~~~~~~~~~~~~~~~~~~~~~
 int tensLedPins[] = {10,11, 12, 13};
 int onesLedPins [] = {6, 7, 8, 9};
@@ -72,21 +74,26 @@ void loop(){
       activatedSecondSensor = 1;
     }
     else if(activatedSecondSensor && activatedFirstAndSecondSensor){
-      availablePlaces -= 1;
-      isEntering = 0;
-      Serial.print("Un auto entro!!\n");
-      Serial.print(availablePlaces);
-
-      digitalWrite(entrySignal, HIGH);
-      delay(50);
-      digitalWrite(entrySignal, LOW);
-      
-
-      if(ones == 0){
-          ones = 9;
-          tens--;
-      }else{
-          ones--;
+      if(availablePlaces == 0){
+        overflowCars++;
+      }
+      if(overflowCars == 0){
+        availablePlaces -= 1;
+        isEntering = 0;
+        Serial.print("Un auto entro!!\n");
+        Serial.print(availablePlaces);
+  
+        digitalWrite(entrySignal, HIGH);
+        delay(50);
+        digitalWrite(entrySignal, LOW);
+        
+  
+        if(ones == 0){
+            ones = 9;
+            tens--;
+        }else{
+            ones--;
+        }
       }
 
     }else{
@@ -102,21 +109,26 @@ void loop(){
       activatedFirstSensor = 1;
     }
     else if(activatedFirstSensor && activatedFirstAndSecondSensor){
-      availablePlaces += 1;
-      isExiting = 0;
-      Serial.print("Un auto salio!!\n");
-      Serial.print(availablePlaces);
-
-      digitalWrite(exitSignal, HIGH);
-      delay(50);
-      digitalWrite(exitSignal, LOW);
-      
-
-      if(ones == 9){
-          ones = 0;
-          tens++;
-      }else{
-          ones++;
+      if(overflowCars != 0){
+        overflowCars--;
+      }
+      if(overflowCars == 0){
+        availablePlaces += 1;
+        isExiting = 0;
+        Serial.print("Un auto salio!!\n");
+        Serial.print(availablePlaces);
+  
+        digitalWrite(exitSignal, HIGH);
+        delay(50);
+        digitalWrite(exitSignal, LOW);
+        
+  
+        if(ones == 9){
+            ones = 0;
+            tens++;
+        }else{
+            ones++;
+        }
       }
 
     }else{
