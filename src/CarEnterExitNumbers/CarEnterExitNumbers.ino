@@ -3,7 +3,7 @@ const int entryPhotoResistorPin = A1;
 const int exitPhotoResistorPin = A2;
 const int entryLaserPin = 3;
 const int exitLaserPin = 4;
-
+const int ledPin = 19;
 const int entrySignal = 5;
 const int exitSignal = 2;
 
@@ -11,7 +11,7 @@ const int exitSignal = 2;
 
 int entryLightLevel = 0;
 int exitLightLevel = 0;
-int availablePlaces = 20;
+int availablePlaces = 24;
 int isEntering = 0;
 int isExiting = 0;
 int carInSystem = 0;
@@ -27,7 +27,7 @@ int tensLedPins[] = {10,11, 12, 13};
 int onesLedPins [] = {6, 7, 8, 9};
 int bitAmount = 4;
 int tens = 2;
-int ones = 0;
+int ones = 4;
 
 
 void setup(){
@@ -35,6 +35,7 @@ void setup(){
   pinMode(exitLaserPin, OUTPUT);
   pinMode(entrySignal, OUTPUT);
   pinMode(exitSignal, OUTPUT);
+  pinMode(ledPin, OUTPUT);
 
   digitalWrite(entryLaserPin, HIGH);
   digitalWrite(exitLaserPin, HIGH);
@@ -74,10 +75,13 @@ void loop(){
       activatedSecondSensor = 1;
     }
     else if(activatedSecondSensor && activatedFirstAndSecondSensor){
+      Serial.print("Entrandooooooo");
       if(availablePlaces == 0){
         overflowCars++;
+        digitalWrite(ledPin, HIGH);
       }
       if(overflowCars == 0){
+        digitalWrite(ledPin, LOW);
         availablePlaces -= 1;
         isEntering = 0;
         Serial.print("Un auto entro!!\n");
@@ -109,10 +113,11 @@ void loop(){
       activatedFirstSensor = 1;
     }
     else if(activatedFirstSensor && activatedFirstAndSecondSensor){
+      Serial.print("Saliendo......");
       if(overflowCars != 0){
         overflowCars--;
       }
-      if(overflowCars == 0){
+      else if(overflowCars == 0 && availablePlaces < 24){
         availablePlaces += 1;
         isExiting = 0;
         Serial.print("Un auto salio!!\n");
@@ -129,9 +134,15 @@ void loop(){
         }else{
             ones++;
         }
+      }else{
+          activatedFirstSensor = 0;
+          activatedFirstAndSecondSensor = 0;
+          isExiting = 0;
+          
       }
 
     }else{
+      
       isExiting = 0;
     }
   }
