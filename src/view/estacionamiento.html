@@ -2,6 +2,7 @@
 <head>
 	<title>Sistema de estacionamiento</title>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<style type="text/css">
 		body {
 			margin: auto;
@@ -28,6 +29,18 @@
 	</style>
 </head>
 <body>
+	<script>
+		setInterval(function() {
+			axios.get('http://localhost:3000')
+					.then(function (response) {
+			console.log(response);
+			document.getElementById('content').innerHTML = response.data.value;
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+				}, 2000);
+	</script>
 <div class="container">
 	<div class="head">
 		<h1>Bienvenido al ParkingAustral</h1>
@@ -39,7 +52,7 @@
 	<div class="time">
 		<h1>ESPACIO DISPONIBLE</h1>
 		<!-- aca se pone 'X' (donde se figura el numero disponible) -->
-		<h2 class="estacionamiento">25</h2>  
+		<h2 id='content' class="estacionamiento">25</h2>  
 	</div>
 	</div>
 </body>
