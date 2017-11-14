@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Sistema de estacionamiento</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<style type="text/css">
@@ -15,17 +16,31 @@
       		color: #ffffff;
 			padding:5%
 		}
-		.time {
-			padding:5%;
+		.content {
+			margin-top: 30px;
 		}
 
 		.austral-icon{
 			filter: opacity(.9);
 
 		}
-		.h1 {
-
-		}
+        .estacionamiento{
+            border: 3px solid #1abc9c;
+            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 80%;
+            margin-left: 10%
+        }
+        .estacionamientos-fotos{
+            border-radius: 5px;
+            width: 200px;
+            height: 200px;
+            margin: 15px;
+        }
+        .lugares{
+            text-align: left;
+        }
 	</style>
 </head>
 <body>
@@ -41,18 +56,53 @@
 		  });
 				}, 2000);
 	</script>
-<div class="container">
-	<div class="head">
-		<h1>Bienvenido al ParkingAustral</h1>
-		<div class="row justify-content-center">
-			<img src="car-128.png" class="img-circle" alt="LOGO">
-			<img class ="austral-icon" src="austral.png" class="img-circle" style="border-radius: 100%" alt="logo-austral">
-		</div>
-	</div>
-	<div class="time">
-		<h1>ESPACIO DISPONIBLE</h1>
-		<!-- aca se pone 'X' (donde se figura el numero disponible) -->
-		<h2 id='content' class="estacionamiento">25</h2>  
-	</div>
-	</div>
+    
+
+    <div class="head">
+        <h1>Bienvenido al ParkingAustral</h1>
+        <div class="row justify-content-center">
+            <img src="car-128.png" class="img-circle" alt="LOGO">
+            <img class ="austral-icon" src="austral.png" class="img-circle" style="border-radius: 100%" alt="logo-austral">
+        </div>
+    </div>
+
+
+    <div class="content">
+
+        <div class="row estacionamiento">
+            <div class="col-sm-6">
+                <img src="Estacionamiento1.JPG" 
+                     class="estacionamientos-fotos">            
+            </div>
+            <div class="col-sm-6 lugares">
+                <h3>ESPACIOS DISPONIBLE</h3>
+                <!-- aca se pone 'X' (donde se figura el numero disponible) -->
+                <h4 id="content">24</h4> 
+            </div>
+        </div>
+
+        <div class="row estacionamiento">
+            <div class="col-sm-6">
+                <img src="Estacionamiento2.JPG" 
+                     class="estacionamientos-fotos">
+            </div>
+            <div class="col-sm-6 lugares">
+                <h3>ESPACIOS DISPONIBLE</h3>
+                <h4>36</h4> 
+            </div>
+        </div>
+
+        <div class="row estacionamiento">
+            <div class="col-sm-6">
+                <img src="Estacionamiento3.JPG" 
+                     class="estacionamientos-fotos">
+            </div>
+            <div class="col-sm-6 lugares">
+                <h3>ESPACIOS DISPONIBLE</h3>
+                <h4>18</h4> 
+            </div>
+        </div>
+
+    </div>
+ 
 </body>
